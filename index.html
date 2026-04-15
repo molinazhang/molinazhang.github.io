@@ -3,477 +3,284 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Name — Researcher</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <title>Jiajin (Molina) Zhang</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg:        #F5F0E8;
-      --bg-alt:    #EDE7D9;
-      --ink:       #1C1A17;
-      --ink-muted: #5A5548;
-      --accent:    #7A4F2D;
-      --accent-lt: #C8976A;
-      --rule:      #C8BFB0;
-      --serif: 'Cormorant Garamond', Georgia, serif;
-      --sans:  'DM Sans', sans-serif;
+      --bg: #f7f4ef;
+      --ink: #1a1a18;
+      --muted: #6b6760;
+      --accent: #8b4a2f;
+      --accent-light: #c9845f;
+      --rule: #d6d0c8;
+      --card: #eeebe4;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; font-size: 16px; }
-
+    html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--ink);
-      font-family: var(--sans);
+      font-family: 'DM Sans', sans-serif;
       font-weight: 300;
       line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
+      font-size: 15px;
     }
 
-    /* ── NAV ───────────────────────────────────────────── */
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(245,240,232,0.88);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--rule);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 clamp(1.5rem, 5vw, 4rem);
-      height: 58px;
-    }
-    .nav-name {
-      font-family: var(--serif); font-weight: 400; font-size: 1.1rem;
-      letter-spacing: 0.02em; color: var(--ink); text-decoration: none;
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
-      font-weight: 400; color: var(--ink-muted); text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--accent); }
-
-    /* ── LAYOUT ────────────────────────────────────────── */
-    section { padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 8vw, 8rem); }
-    section + section { border-top: 1px solid var(--rule); }
-    .section-label {
-      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--accent-lt); font-family: var(--sans); font-weight: 400;
-      margin-bottom: 2.5rem;
-    }
-
-    /* ── HERO ──────────────────────────────────────────── */
-    #about {
-      padding-top: calc(58px + clamp(4rem, 8vw, 7rem));
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      min-height: 92vh;
-    }
-    .hero-text {}
-    .hero-tag {
-      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--accent); font-weight: 400; margin-bottom: 1.5rem;
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-    .hero-tag::before {
-      content: ''; display: block; width: 28px; height: 1px; background: var(--accent);
-    }
-    h1 {
-      font-family: var(--serif); font-weight: 300; font-size: clamp(3rem, 6vw, 5.5rem);
-      line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 1.8rem;
-    }
-    h1 em { font-style: italic; color: var(--accent); }
-    .hero-bio {
-      font-size: 1.05rem; color: var(--ink-muted); max-width: 46ch;
-      line-height: 1.8; margin-bottom: 2.5rem;
-    }
-    .hero-links { display: flex; flex-wrap: wrap; gap: 1rem; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
-      font-weight: 400; text-decoration: none; padding: 0.7rem 1.4rem;
-      border: 1px solid; transition: all 0.22s;
-    }
-    .btn-primary {
-      background: var(--accent); color: var(--bg); border-color: var(--accent);
-    }
-    .btn-primary:hover { background: var(--ink); border-color: var(--ink); }
-    .btn-ghost {
-      background: transparent; color: var(--ink); border-color: var(--rule);
-    }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-    .hero-aside {
-      position: relative;
-      display: flex; flex-direction: column; gap: 1.5rem;
-    }
-    .hero-photo-wrap {
-      position: relative; align-self: flex-start;
-    }
-    .hero-photo-wrap::before {
-      content: '';
-      position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px;
-      border: 1px solid var(--rule);
-      z-index: 0;
-    }
-    .hero-photo {
-      position: relative; z-index: 1;
-      width: 100%; max-width: 320px;
-      aspect-ratio: 3/4; object-fit: cover;
-      display: block;
-      background: var(--bg-alt);
-    }
-    /* Placeholder silhouette for photo */
-    .photo-placeholder {
-      position: relative; z-index: 1;
-      width: 100%; max-width: 320px;
-      aspect-ratio: 3/4;
-      background: linear-gradient(160deg, var(--bg-alt) 0%, var(--rule) 100%);
-      display: flex; align-items: flex-end; justify-content: center;
-      overflow: hidden;
-    }
-    .photo-placeholder svg { width: 65%; opacity: 0.25; }
-
-    .affil-block {
-      padding: 1.4rem 1.6rem;
-      background: var(--bg-alt);
-      border-left: 2px solid var(--accent);
-    }
-    .affil-block p { font-size: 0.88rem; color: var(--ink-muted); line-height: 1.6; }
-    .affil-block strong { color: var(--ink); font-weight: 400; }
-
-    /* ── RESEARCH ──────────────────────────────────────── */
-    #research .interests-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5px;
-      background: var(--rule);
-      border: 1px solid var(--rule);
-      margin-top: 0;
-    }
-    .interest-card {
+      position: sticky; top: 0; z-index: 100;
       background: var(--bg);
-      padding: 2rem 2rem 2.2rem;
-      transition: background 0.2s;
-    }
-    .interest-card:hover { background: var(--bg-alt); }
-    .interest-num {
-      font-family: var(--serif); font-size: 2rem; font-weight: 300;
-      color: var(--rule); line-height: 1; margin-bottom: 1rem;
-    }
-    .interest-title {
-      font-family: var(--serif); font-size: 1.25rem; font-weight: 400;
-      margin-bottom: 0.6rem; line-height: 1.3;
-    }
-    .interest-desc { font-size: 0.88rem; color: var(--ink-muted); line-height: 1.7; }
-
-    /* ── PUBLICATIONS ──────────────────────────────────── */
-    #publications .pub-list { display: flex; flex-direction: column; gap: 0; }
-    .pub-item {
-      padding: 2rem 0;
       border-bottom: 1px solid var(--rule);
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 1.5rem;
-      align-items: start;
-      transition: background 0.15s;
+      padding: 1rem 0;
     }
-    .pub-item:first-child { border-top: 1px solid var(--rule); }
-    .pub-year {
-      font-family: var(--serif); font-size: 0.9rem; font-weight: 300;
-      color: var(--ink-muted); padding-top: 0.2rem;
+    nav .wrap { display: flex; justify-content: space-between; align-items: center; }
+    nav .name {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.1rem; color: var(--ink); text-decoration: none;
     }
-    .pub-title {
-      font-family: var(--serif); font-size: 1.18rem; font-weight: 400;
-      line-height: 1.4; margin-bottom: 0.4rem;
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a {
+      text-decoration: none; color: var(--muted);
+      font-size: 0.82rem; letter-spacing: 0.08em;
+      text-transform: uppercase; transition: color 0.2s;
     }
-    .pub-authors { font-size: 0.84rem; color: var(--ink-muted); margin-bottom: 0.35rem; }
-    .pub-authors em { font-style: normal; color: var(--ink); font-weight: 400; }
-    .pub-venue {
-      font-size: 0.82rem; color: var(--accent); letter-spacing: 0.04em;
-      margin-bottom: 0.8rem;
-    }
-    .pub-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-    .pub-link {
-      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--ink-muted); text-decoration: none;
-      border-bottom: 1px solid var(--rule); padding-bottom: 1px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .pub-link:hover { color: var(--accent); border-color: var(--accent); }
+    nav ul a:hover { color: var(--accent); }
 
-    /* ── PROJECTS ──────────────────────────────────────── */
-    #projects .proj-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+    #hero { padding: 5rem 0 4rem; border-bottom: 1px solid var(--rule); }
+    #hero .wrap { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: start; }
+    .hero-text h1 {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400; line-height: 1.15; margin-bottom: 0.4rem;
     }
-    .proj-card {
-      padding: 2rem 2rem 2.2rem;
-      background: var(--bg-alt);
-      border: 1px solid var(--rule);
-      position: relative;
-      transition: transform 0.2s, box-shadow 0.2s;
+    .hero-text h1 em { font-style: italic; color: var(--accent); }
+    .hero-text .title {
+      font-size: 0.85rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 1.8rem;
     }
-    .proj-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.07); }
-    .proj-tag {
-      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--accent-lt); margin-bottom: 1rem;
+    .hero-text p { color: var(--ink); max-width: 560px; margin-bottom: 1rem; font-size: 0.95rem; }
+    .hero-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+    .hero-links a {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.45rem 1rem;
+      border: 1px solid var(--rule); border-radius: 2px;
+      text-decoration: none; font-size: 0.78rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--muted); background: transparent; transition: all 0.2s;
     }
-    .proj-title {
-      font-family: var(--serif); font-size: 1.3rem; font-weight: 400;
-      line-height: 1.3; margin-bottom: 0.8rem;
-    }
-    .proj-desc { font-size: 0.88rem; color: var(--ink-muted); line-height: 1.7; margin-bottom: 1.5rem; }
-    .proj-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .stack-tag {
-      font-size: 0.7rem; letter-spacing: 0.08em;
-      padding: 0.2rem 0.6rem; background: var(--bg);
-      border: 1px solid var(--rule); color: var(--ink-muted);
-    }
+    .hero-links a:hover { border-color: var(--accent); color: var(--accent); background: rgba(139,74,47,0.04); }
 
-    /* ── CV ────────────────────────────────────────────── */
-    #cv {
-      background: var(--bg-alt);
-      text-align: center;
-      display: flex; flex-direction: column; align-items: center;
+    .avatar-box {
+      width: 160px; height: 160px; border-radius: 2px;
+      background: var(--card); border: 1px solid var(--rule);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; overflow: hidden;
     }
-    #cv .cv-heading {
-      font-family: var(--serif); font-weight: 300; font-size: clamp(2rem, 4vw, 3.2rem);
-      margin-bottom: 1rem; line-height: 1.1;
-    }
-    #cv .cv-sub {
-      font-size: 1rem; color: var(--ink-muted); margin-bottom: 2.5rem; max-width: 44ch;
-    }
+    .avatar-initials { font-family: 'EB Garamond', serif; font-size: 2.5rem; color: var(--muted); font-style: italic; }
 
-    /* ── FOOTER ────────────────────────────────────────── */
-    footer {
-      padding: 2rem clamp(1.5rem, 8vw, 8rem);
-      border-top: 1px solid var(--rule);
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    footer p { font-size: 0.8rem; color: var(--ink-muted); }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a {
-      font-size: 0.78rem; color: var(--ink-muted); text-decoration: none;
-      letter-spacing: 0.06em;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--accent); }
+    section { padding: 3.5rem 0; border-bottom: 1px solid var(--rule); }
+    section:last-of-type { border-bottom: none; }
 
-    /* ── ANIMATIONS ────────────────────────────────────── */
-    .fade-in {
-      opacity: 0; transform: translateY(18px);
-      animation: fadeUp 0.7s ease forwards;
+    .section-label {
+      font-size: 0.72rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 1.6rem;
+      display: flex; align-items: center; gap: 0.8rem;
     }
-    .fade-in:nth-child(1) { animation-delay: 0.1s; }
-    .fade-in:nth-child(2) { animation-delay: 0.22s; }
-    .fade-in:nth-child(3) { animation-delay: 0.34s; }
-    .fade-in:nth-child(4) { animation-delay: 0.46s; }
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
-    /* ── RESPONSIVE ────────────────────────────────────── */
-    @media (max-width: 780px) {
-      #about { grid-template-columns: 1fr; min-height: unset; }
-      .hero-aside { order: -1; }
-      .photo-placeholder, .hero-photo { max-width: 200px; }
-      .pub-item { grid-template-columns: 1fr; }
-      .pub-year { padding-top: 0; }
-      .nav-links { gap: 1.2rem; }
+    .research-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .research-card {
+      background: var(--card); border: 1px solid var(--rule);
+      border-radius: 2px; padding: 1.4rem;
+      position: relative; overflow: hidden;
     }
-    @media (max-width: 500px) {
-      .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
+    .research-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 3px; height: 100%; background: var(--accent-light);
+    }
+    .research-card h3 { font-family: 'EB Garamond', serif; font-size: 1.05rem; font-weight: 500; margin-bottom: 0.5rem; }
+    .research-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+    .pub-list { display: flex; flex-direction: column; gap: 1.2rem; }
+    .pub { padding: 1.2rem 1.4rem; border: 1px solid var(--rule); border-radius: 2px; background: var(--card); }
+    .pub-status {
+      display: inline-block; font-size: 0.68rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.2rem 0.6rem; border-radius: 2px; margin-bottom: 0.5rem;
+    }
+    .pub-status.submitted { background: #e8e0d5; color: var(--muted); }
+    .pub-status.published { background: rgba(139,74,47,0.12); color: var(--accent); }
+    .pub-status.prep { background: #e5eae8; color: #4a6b5f; }
+    .pub-title { font-family: 'EB Garamond', serif; font-size: 1rem; font-weight: 500; color: var(--ink); margin-bottom: 0.3rem; line-height: 1.4; }
+    .pub-authors { font-size: 0.84rem; color: var(--muted); margin-bottom: 0.2rem; }
+    .pub-authors strong { color: var(--ink); font-weight: 500; }
+    .pub-venue { font-size: 0.82rem; color: var(--muted); font-style: italic; }
+
+    footer { padding: 2rem 0; text-align: center; font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--rule); }
+    footer a { color: var(--muted); text-decoration: underline; }
+
+    .fade-in { opacity: 0; transform: translateY(16px); animation: fadeUp 0.6s ease forwards; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .fade-in:nth-child(1) { animation-delay: 0.05s; }
+    .fade-in:nth-child(2) { animation-delay: 0.15s; }
+    .fade-in:nth-child(3) { animation-delay: 0.25s; }
+    .fade-in:nth-child(4) { animation-delay: 0.35s; }
+
+    @media (max-width: 640px) {
+      #hero .wrap { grid-template-columns: 1fr; }
+      .avatar-box { display: none; }
+      .research-grid { grid-template-columns: 1fr; }
+      nav ul { gap: 1.2rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- ── NAVIGATION ─────────────────────────────────────── -->
 <nav>
-  <a class="nav-name" href="#about">Your Name</a>
-  <ul class="nav-links">
-    <li><a href="#research">Research</a></li>
-    <li><a href="#publications">Publications</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#cv">CV</a></li>
-  </ul>
+  <div class="wrap">
+    <a href="#" class="name">Jiajin (Molina) Zhang</a>
+    <ul>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
-<!-- ── ABOUT ──────────────────────────────────────────── -->
-<section id="about">
-  <div class="hero-text">
-    <div class="hero-tag fade-in">PhD Researcher · Your University</div>
-    <h1 class="fade-in">Your<br><em>Name</em></h1>
-    <p class="hero-bio fade-in">
-      I'm a PhD researcher in [Your Department] at [Your University], working in the
-      [Lab Name] on questions at the intersection of [broad area] and [specific area].
-      My work combines [methods] to understand [core research question].
-    </p>
-    <div class="hero-links fade-in">
-      <a class="btn btn-primary" href="mailto:you@university.edu">Get in touch</a>
-      <a class="btn btn-ghost" href="https://scholar.google.com" target="_blank">Google Scholar</a>
-      <a class="btn btn-ghost" href="https://github.com/yourusername" target="_blank">GitHub</a>
-      <a class="btn btn-ghost" href="https://twitter.com/yourhandle" target="_blank">Twitter / X</a>
-    </div>
-  </div>
-  <div class="hero-aside">
-    <!-- Replace with: <img class="hero-photo" src="photo.jpg" alt="Your Name"> -->
-    <div class="photo-placeholder">
-      <svg viewBox="0 0 100 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="50" cy="38" r="26" fill="currentColor"/>
-        <path d="M0 130 Q50 85 100 130" fill="currentColor"/>
-      </svg>
-    </div>
-    <div class="affil-block">
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-text">
+      <h1>Jiajin <em>(Molina)</em> Zhang</h1>
+      <p class="title">PhD Student &mdash; Cognitive &amp; Psychological Sciences, Brown University</p>
       <p>
-        <strong>PhD Candidate</strong>, [Department]<br>
-        [Your University], [City]<br><br>
-        Advisor: <strong>Prof. [Name]</strong><br>
-        [Lab Name]
+        I am a PhD student working with <a href="https://www.feldmanhalllab.com/" style="color:var(--accent);text-decoration:none;">Oriel FeldmanHall</a> at Brown University. My work sits at the intersection of individual differences, emotional dynamics, and mental health.
       </p>
+      <p>
+        Previously, I was a full-time research assistant with <a href="https://www.deanmobbslab.com/" style="color:var(--accent);text-decoration:none;">Dean Mobbs</a> at Caltech and <a href="https://www.sarahmtashjian.com/" style="color:var(--accent);text-decoration:none;">Sarah Tashjian</a> at the University of Melbourne. I completed my undergraduate training at Emory University, where I double-majored in Neuroscience and Anthropology under the mentorship of <a href="https://scholarblogs.emory.edu/ldn/" style="color:var(--accent);text-decoration:none;">James Riling</a>.
+      </p>
+      <div class="hero-links">
+        <a href="mailto:jiajin_zhang@brown.edu">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          Email
+        </a>
+        <a href="https://scholar.google.com/citations?user=eUwBxe4AAAAJ&hl=en" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Google Scholar
+        </a>
+        <a href="https://www.linkedin.com/in/jiajin-molina-z-03839b1ab" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://www.feldmanhalllab.com/" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Lab Website
+        </a>
+      </div>
+    </div>
+    <div class="avatar-box">
+      <span class="avatar-initials">JZ</span>
     </div>
   </div>
 </section>
 
-<!-- ── RESEARCH ────────────────────────────────────────── -->
 <section id="research">
-  <p class="section-label">Research Interests</p>
-  <div class="interests-grid">
-    <div class="interest-card">
-      <div class="interest-num">01</div>
-      <div class="interest-title">Research Area One</div>
-      <p class="interest-desc">A brief description of your first major research area and what draws you to it. What questions are you trying to answer?</p>
-    </div>
-    <div class="interest-card">
-      <div class="interest-num">02</div>
-      <div class="interest-title">Research Area Two</div>
-      <p class="interest-desc">Describe your second research interest here. What methods or frameworks do you apply? What have you found so far?</p>
-    </div>
-    <div class="interest-card">
-      <div class="interest-num">03</div>
-      <div class="interest-title">Research Area Three</div>
-      <p class="interest-desc">A third thread of your work. This could be a methodological specialty, a theoretical interest, or an application domain.</p>
-    </div>
-    <div class="interest-card">
-      <div class="interest-num">04</div>
-      <div class="interest-title">Research Area Four</div>
-      <p class="interest-desc">Optional fourth area. Remove this card or add more as needed—the grid adjusts automatically.</p>
+  <div class="wrap">
+    <div class="section-label">Research Interests</div>
+    <div class="research-grid">
+      <div class="research-card fade-in">
+        <h3>Loneliness &amp; Social Networks</h3>
+        <p>How neural representations of social networks predict chronic loneliness, and how network instability over time relates to loneliness trajectories using longitudinal ESM data and network modeling.</p>
+      </div>
+      <div class="research-card fade-in">
+        <h3>Emotional Dynamics</h3>
+        <p>Individual differences in emotional dynamics as potential risk factors for mood disorders, and how chronic loneliness alters the temporal structure of emotion.</p>
+      </div>
+      <div class="research-card fade-in">
+        <h3>Social Cognition &amp; fMRI</h3>
+        <p>Neural mechanisms of social feature learning, emotion prediction errors, and how the brain encodes familiarity and friendship structure in real-world social networks.</p>
+      </div>
+      <div class="research-card fade-in">
+        <h3>AI &amp; Mental Health</h3>
+        <p>Understanding how large language models represent latent psychological states — with the goal of informing the design of safe and effective AI companions for mental health.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ── PUBLICATIONS ────────────────────────────────────── -->
 <section id="publications">
-  <p class="section-label">Publications &amp; Preprints</p>
-  <div class="pub-list">
+  <div class="wrap">
+    <div class="section-label">Publications</div>
+    <div class="pub-list">
 
-    <div class="pub-item">
-      <div class="pub-year">2025</div>
-      <div>
-        <div class="pub-title">Title of Your Most Recent Paper or Preprint</div>
-        <div class="pub-authors"><em>Your Name</em>, Co-Author A, Co-Author B, Senior Author</div>
-        <div class="pub-venue">Journal Name / bioRxiv preprint</div>
-        <div class="pub-links">
-          <a class="pub-link" href="#">PDF</a>
-          <a class="pub-link" href="#">DOI</a>
-          <a class="pub-link" href="#">Code</a>
-          <a class="pub-link" href="#">Preprint</a>
-        </div>
+      <div class="pub">
+        <span class="pub-status submitted">Submitted</span>
+        <div class="pub-title">Geography of loneliness: neural and cognitive mechanisms driving loneliness in a large real-world social network</div>
+        <div class="pub-authors"><strong>Zhang J.</strong>, Teoh Y.Y., Aslarus I., FeldmanHall O.</div>
       </div>
-    </div>
 
-    <div class="pub-item">
-      <div class="pub-year">2024</div>
-      <div>
-        <div class="pub-title">Title of Another Paper or Conference Contribution</div>
-        <div class="pub-authors">Co-Author A, <em>Your Name</em>, Senior Author</div>
-        <div class="pub-venue">Conference Name / Journal Name</div>
-        <div class="pub-links">
-          <a class="pub-link" href="#">PDF</a>
-          <a class="pub-link" href="#">DOI</a>
-          <a class="pub-link" href="#">Poster</a>
-        </div>
+      <div class="pub">
+        <span class="pub-status submitted">Submitted</span>
+        <div class="pub-title">Trait and state safety features evoke differential neural response</div>
+        <div class="pub-authors"><strong>Zhang J.</strong>, Zhang Y., Mobbs D., Tashjian S.</div>
       </div>
-    </div>
 
-    <div class="pub-item">
-      <div class="pub-year">2023</div>
-      <div>
-        <div class="pub-title">Earlier Work: Paper Title Goes Here</div>
-        <div class="pub-authors"><em>Your Name</em>, Collaborator Name, Advisor Name</div>
-        <div class="pub-venue">Journal of [Field], Vol. X, Issue Y</div>
-        <div class="pub-links">
-          <a class="pub-link" href="#">PDF</a>
-          <a class="pub-link" href="#">DOI</a>
-        </div>
+      <div class="pub">
+        <span class="pub-status prep">In Preparation</span>
+        <div class="pub-title">Emotion prediction errors guide social feature learning</div>
+        <div class="pub-authors"><strong>Zhang J.</strong>, FeldmanHall O.</div>
       </div>
-    </div>
 
+      <div class="pub">
+        <span class="pub-status published">Published</span>
+        <div class="pub-title">Three roots of online toxicity: disembodiment, accountability, and disinhibition</div>
+        <div class="pub-authors">Pandita S., Garg K., <strong>Zhang J.</strong>, Mobbs D.</div>
+        <div class="pub-venue">Trends in Cognitive Sciences, 28(9), 814–828</div>
+      </div>
+
+      <div class="pub">
+        <span class="pub-status published">Published</span>
+        <div class="pub-title">Survival decisions in a world of complex danger</div>
+        <div class="pub-authors">Mobbs D., Wise T., Tashjian S., <strong>Zhang J.</strong>, Friston K., Headley D.</div>
+        <div class="pub-venue">Neuroscience and Biobehavioral Reviews</div>
+      </div>
+
+      <div class="pub">
+        <span class="pub-status published">Published</span>
+        <div class="pub-title">Evaluation of a photo captioning cognitive empathy intervention for dementia caregivers</div>
+        <div class="pub-authors">Rilling J., Lee M., McIsaac H., Factor S., Gallagher P., Kim J., <strong>Zhang J.</strong>, Zhou C., McDade T., Hepburn K., Perkins M.</div>
+        <div class="pub-venue">Clinical Gerontologist, 2024</div>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<!-- ── PROJECTS ────────────────────────────────────────── -->
-<section id="projects">
-  <p class="section-label">Projects &amp; Tools</p>
-  <div class="proj-grid">
-
-    <div class="proj-card">
-      <div class="proj-tag">Ongoing · Research</div>
-      <div class="proj-title">Project or Tool Name One</div>
-      <p class="proj-desc">Describe what this project is and why it matters. What problem does it solve? What have you built or found? Who might use it?</p>
-      <div class="proj-stack">
-        <span class="stack-tag">Python</span>
-        <span class="stack-tag">fMRI</span>
-        <span class="stack-tag">Tool/Library</span>
-      </div>
-    </div>
-
-    <div class="proj-card">
-      <div class="proj-tag">2024 · Methods</div>
-      <div class="proj-title">Project or Tool Name Two</div>
-      <p class="proj-desc">Another project highlight. This could be a pipeline, dataset, analysis package, open-source tool, or collaboration you're proud of.</p>
-      <div class="proj-stack">
-        <span class="stack-tag">R</span>
-        <span class="stack-tag">lme4</span>
-        <span class="stack-tag">ggplot2</span>
-      </div>
-    </div>
-
-    <div class="proj-card">
-      <div class="proj-tag">2023 · Open Science</div>
-      <div class="proj-title">Project or Tool Name Three</div>
-      <p class="proj-desc">A third project—maybe a teaching resource, a tutorial, or a community contribution. Remove or add cards as needed.</p>
-      <div class="proj-stack">
-        <span class="stack-tag">GitHub</span>
-        <span class="stack-tag">SLURM</span>
-      </div>
-    </div>
-
+<section id="contact">
+  <div class="wrap">
+    <div class="section-label">Contact</div>
+    <p style="color:var(--muted); font-size:0.92rem; max-width:480px;">
+      I'm always happy to chat about research, potential collaborations, or questions about graduate school. The best way to reach me is by email.
+    </p>
+    <p style="margin-top:1rem;">
+      <a href="mailto:jiajin_zhang@brown.edu" style="color:var(--accent);text-decoration:none;font-family:'EB Garamond',serif;font-size:1.1rem;">
+        jiajin_zhang@brown.edu
+      </a>
+    </p>
+    <p style="margin-top:0.4rem; font-size:0.84rem; color:var(--muted);">
+      Department of Cognitive, Linguistic, and Psychological Sciences<br>
+      Brown University, Providence, RI
+    </p>
   </div>
 </section>
 
-<!-- ── CV ──────────────────────────────────────────────── -->
-<section id="cv">
-  <p class="section-label">Curriculum Vitae</p>
-  <h2 class="cv-heading">Full academic record,<br>available for download.</h2>
-  <p class="cv-sub">Education, positions, awards, teaching, service, and a complete list of publications.</p>
-  <a class="btn btn-primary" href="cv.pdf" target="_blank">Download CV (PDF)</a>
-</section>
-
-<!-- ── FOOTER ──────────────────────────────────────────── -->
 <footer>
-  <p>© 2025 Your Name · Built with HTML/CSS</p>
-  <div class="footer-links">
-    <a href="mailto:you@university.edu">Email</a>
-    <a href="https://scholar.google.com" target="_blank">Scholar</a>
-    <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-    <a href="https://orcid.org/0000-0000-0000-0000" target="_blank">ORCID</a>
+  <div class="wrap">
+    &copy; 2026 Jiajin (Molina) Zhang &nbsp;&middot;&nbsp;
+    <a href="https://scholar.google.com/citations?user=eUwBxe4AAAAJ&hl=en" target="_blank">Google Scholar</a> &nbsp;&middot;&nbsp;
+    <a href="https://www.linkedin.com/in/jiajin-molina-z-03839b1ab" target="_blank">LinkedIn</a>
   </div>
 </footer>
 
